@@ -4,19 +4,21 @@ require_relative '../src/aventurero'
 
 describe 'Artefactos' do
 
-  let(:espectroMalefico){
-    HechizoDeLogo.new("Espectro Malefico",1)
+  let(:espectroMalefico) {
+    HechizoDeLogo.new("Espectro Malefico", 1)
   }
-  let(:rolando){
-    Aventurero.new(espectroMalefico,1)
+  let(:rolando) {
+    Aventurero.new(espectroMalefico, 1)
   }
-  let(:mascaraOscura){
+  let(:mascaraOscura) {
     Mascara.new(1)
   }
-  let(:armaduraDeRolando){
-    Armadura.new(RefuerzoNulo,2)
+  let(:armaduraDeRolando) {
+    Armadura.new(RefuerzoNulo, 2)
   }
-
+  let(:mascaraParaNadaOscura) {
+    Mascara.new(0)
+  }
 
   before do
     FuerzaOscura.cambiarValor(5)
@@ -52,4 +54,17 @@ describe 'Artefactos' do
 
   end
 
+  context "Lucha reformulada, mascara para nada oscura " do
+
+    it "El valor de lucha deberia ser 4 " do
+      expect(mascaraParaNadaOscura.unidadesDeLucha(rolando)).to eq(4)
+    end
+
+    it "Cambiando el minimo el valor de lucha deberia ser 2" do
+      mascaraParaNadaOscura.minimo = 2
+      expect(mascaraParaNadaOscura.unidadesDeLucha(rolando)).to eq(2)
+    end
+  end
+
 end
+

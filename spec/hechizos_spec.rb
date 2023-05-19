@@ -34,3 +34,18 @@ describe "Hechizo Basico" do
 
   end
 end
+
+describe "Alacachula cachicomula" do
+
+  let(:alacachulaCachicomula){
+    HechizoDeLogo.new("alacachula cachicomula",1)
+  }
+
+  context "precio del hechizo" do
+    it "El precio del hechizod deberia ser 22"do
+      expect(alacachulaCachicomula.precioBase).to eq(22)
+    end
+  end
+
+
+end

@@ -51,7 +51,7 @@ class Mascara
     70 + FuerzaOscura.valor * @indiceDeOscuridad
   end
 
-end+
+end
 
 module RefuerzoNulo
 
@@ -59,7 +59,7 @@ module RefuerzoNulo
     0
   end
 
-  def precioArmadura(armadura)
+  def self.precioArmadura(armadura)
     2
   end
 
@@ -97,8 +97,8 @@ class CotaDeMalla
     @valorDeRefuerzo
   end
 
-  def precioArmadura
-    @valorDeRefuerzo / 2
+  def precioArmadura(aventurero)
+    @valorDeRefuerzo / 2.0
   end
 
 end
@@ -109,7 +109,7 @@ module Bendicion
     aventurero.nivelDeHechiceria
   end
 
-  def precioArmadura(armadura)
+  def self.precioArmadura(armadura)
     armadura.valorBase
   end
 end

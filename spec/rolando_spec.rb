@@ -21,6 +21,9 @@ describe 'rolando' do
   let(:libroDeHechizos){
     LibroDeHechizos.new([espectroMalefico,HechizoBasico])
   }
+  let(:armaduraNuevaDeRolando){
+    Armadura.new(CotaDeMalla.new(6),5)
+  }
 
   before do
     # Este bloque ejecuta antes e cada it
@@ -123,6 +126,20 @@ describe 'rolando' do
       rolando.hechizoPreferido(libroDeHechizos)
       expect(rolando.nivelDeHechiceria).to eq(56)
     end
+
+    it "El valor de lucha de Rolando con la armadura nueva " do
+      rolando.artefactos([espadaDelDestino, CollarDivino, mascaraOscura, armaduraDeRolando, EspejoFantastico,armaduraNuevaDeRolando])
+      expect(rolando.habilidadDelucha).to eq(37)
+    end
+
   end
 
+  context "Comercio" do
+
+    it 'Rolando cumplico un objetivo , deberia tener 110 monedas' do
+      rolando.completarObjetivo
+      expect(rolando.monedero).to eq(110)
+    end
+
+  end
 end

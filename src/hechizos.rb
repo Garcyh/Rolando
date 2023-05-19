@@ -44,7 +44,7 @@ class HechizoDeLogo
 end
 
 module HechizoBasico
-  include Hechizo
+  extend Hechizo
 
   def self.poder
     10
@@ -78,7 +78,7 @@ class LibroDeHechizos
 
   def precio(aventurero)
     valorDeHechizosPoderosos = hechizosPoderosos.map {|hechizo|hechizo.poder}
-    hechizos.size * 10 + valorDeHechizosPoderosos
+    hechizos.size * 10 + valorDeHechizosPoderosos.sum
   end
 
   private

@@ -14,7 +14,6 @@ class Aventurero
     @monedero = 100
   end
 
-
   def comprar()
     
   end
@@ -79,6 +78,17 @@ class Aventurero
     artefacto.precio(self) <= @monedero
   end
 
+  def precioConDescuentoHechizo(hechizo)
+    if hechizo.precio(self) - @hechizoPreferido.precio(self)/2 <= 0
+      0
+    else
+      hechizo.precio(self) - @hechizoPreferido.precio(self)/2
+    end
+  end
+  def puedoComprarHechizo?(hechizo)
+    self.precioConDescuentoHechizo(hechizo) <= @monedero
+  end
+
   def comprarArtefacto!(artefacto)
 
     if !puedoComprar?(artefacto)
@@ -87,6 +97,17 @@ class Aventurero
 
     @inventario.push(artefacto)
     @monedero -= artefacto.precio(self)
+
+  end
+
+  def comprarHechizo!(hechizo)
+
+    if !puedoComprarHechizo?(hechizo)
+      raise NoPuedoComprar.new("No puedo comprar este hechizo, soy pobre")
+    end
+
+    @monedero -= self.precioConDescuentoHechizo(hechizo)
+    @hechizoPreferido = hechizo
 
   end
 
